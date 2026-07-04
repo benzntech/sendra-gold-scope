@@ -1,0 +1,6 @@
+{
+  "name": "Sendra Gold",
+  "description": "V1.0 Hybrid Gold Ecommerce & Buyback Platform featuring catalogue management, live gold pricing, secure staff ticket approval workflow, offline sync, and a master dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,263 @@
+SENDRA GOLD — PROJECT SCOPE & PROGRESS
+========================================
+Date: 4 July 2026
+
+PROJECT OVERVIEW
+----------------
+Premium gold & silver jewellery e-commerce platform.
+Goal: Fully branded online store (modelled on darjewellery.com) with 43,000+ products,
+custom storefront design, and zero traces of original Bagisto/Webkul branding.
+
+STACK
+-----
+Backend:   Bagisto (Laravel) — Docker on EC2 13.140.136.162:8000
+Storefront: Next.js 16 — Docker on EC2 13.140.136.162:3001
+GitHub:    benzntech/bagisto-storefront (main), benzntech/bagisto-backend
+Database:  MySQL on Docker, port 3307
+Admin:     http://13.140.136.162:8000/admin/login (admin@example.com / admin123)
+SSH:       root@13.140.136.162 (default key, no PEM)
+
+BRAND COLOURS
+-------------
+Burgundy: #b00000
+Slate:    #406070
+Gold:     #d4a853
+Cream:    #faf6f0
+Green:    #489970
+Dark:     #314f40
+
+================================================================================
+WORK COMPLETED
+================================================================================
+
+PHASE 1 — PLATFORM SETUP (20 Jun)
+----------------------------------
+- Medusa.js torn down, Bagisto v2.4 deployed with Docker
+- PHP 8.3 Docker image built with all extensions
+- MySQL migrations run, admin user seeded
+- Admin panel live at :8000/admin, storefront at :3001
+- Branding: admin logo replaced with Sendra Gold SVG
+- Footer "Powered by Bagisto/Webkul" changed to "Sendra Gold"
+- Storefront .env configured (API endpoint, auth secret, company name)
+- Docker containers on separate networks (172.23.x storefront, 172.22.x backend)
+- Container names: bagisto-app, bagisto-mysql, bagisto-storefront
+
+PHASE 2 — DAR API REVERSE ENGINEERING (21 Jun)
+-----------------------------------------------
+- Cracked darjewellery.com's product API at POST /api/product/productListPage
+- Discovered double-wrapped JSON body: data → stringified JSON
+- Fields: currency, pc.dcount (48max), pc.page, url, client_id(233), jbo_id(233)
+- Image URLs base64-encoded in "Images" field
+- Alternative: thumbnail_image[0] gives direct URL
+- Extracted 230+ category URLs from sitemap
+- Sample: Gold Earrings alone = 15,273 products, 319 pages
+
+PHASE 3 — BULK PRODUCT EXTRACTION (21 Jun)
+-------------------------------------------
+- Built Python extraction script on AWS server against DAR's live API
+- Scraped 77,715 total products across all 230 categories
+- Deduplicated to 43,527 unique SKUs (34K duplicates due to multi-category)
+- Saved raw data to /root/dar-import/all_products.json
+- Extracted 38,588 unique image URLs to /root/dar-import/image_urls.json
+
+PHASE 4 — IMAGE DOWNLOAD (21-22 Jun)
+-------------------------------------
+- Downloaded all 38,588 product images from DAR's CDN
+- Images in s1200 format (~1200px wide)
+- Multiple images per product (variants/angles)
+- 77,653 total image files copied to Bagisto storage
+
+PHASE 5 — DATABASE IMPORT (22 Jun)
+-----------------------------------
+- Created 203 categories (3-level hierarchy matching DAR structure) via SQL
+- Imported 43,527 products via SQL batch INSERT IGNORE
+- Category hierarchy: Top → Subcategory → Sub-subcategory
+- Products linked to categories via pivot tables
+
+PHASE 6 — STOREFRONT REDESIGN — darjewellery.com STYLE (22 Jun)
+----------------------------------------------------------------
+New components created:
+
+  AnnouncementBar
+    - Green top bar (#E9F8EE background)
+    - Rotating offer text (auto-cycling)
+    - Phone number display
+    - Store locator link
+
+  Navbar (modified)
+    - Green theme (#314f40 background, #489970 buttons)
+    - Category dropdown menu
+    - Search, account, cart icons
+    - Navigation links
+
+  CategorySidebar
+    - Desktop only (hidden on mobile)
+    - 300px fixed width
+    - Category links with emoji icons
+    - Live data from GraphQL query
+    - Skeleton loading state
+    - Hover effects (green highlight)
+
+  QuickShopCircles
+    - 12 circular quick-shop links
+    - Items: Gold Chain, Bangle, Haram, Necklace, Ring, Earrings,
+             Silver Earrings, Silver Necklace, Silver Rings,
+             Silver Idols, Mens Jewellery, Gold Coins
+    - VA badges (red pill) on gold items: "Starting from X%"
+    - Desktop: 6-column grid, 141px circles
+    - Mobile: horizontal scroll
+
+  ExclusiveOffers
+    - 4-card grid on cream (#fffaf2) background
+    - Section title + description text
+    - Colored cards (burgundy, navy, charcoal, deep red)
+    - Hover scale effect
+    - View Collection links
+
+  FeaturedCollage
+    - Masonry layout on desktop
+    - Large left tile (Necklace, gradient bg) — 6 columns
+    - 2x2 right grid (Chains, Bracelets, Rings, Kada) — 3+3 columns
+    - Mobile: vertical stack, variable aspect ratios
+    - Gradient overlays with text labels
+    - Total height: 420px desktop, 580px xl
+
+Other changes:
+  - page.tsx — new homepage layout with all sections
+  - globals.css — added no-scrollbar utility for mobile
+  - All verified rendering with zero console errors
+
+PHASE 7 — BUG FIXES (23 Jun)
+-----------------------------
+
+  Issue: Blank images
+  Root cause: Import stored images at
+    storage/app/public/app/public/product/ID/
+    instead of
+    storage/app/public/product/ID/
+    (extra "app/public/" nesting in path)
+  Fix: Copied 37,261 product directories to correct path
+       Images now serve correctly at /storage/product/ID/filename.jpg
+  Status: Resolved ✅
+
+  Issue: Product page 404
+  Root cause: Tested invalid URL keys like "gold-chain-1"
+  Reality: Valid product keys (e.g. "22-kt-gold-nethi-chutti-00227104")
+           work fine through SSR GraphQL
+  Status: Not a bug ✅
+
+  Issue: Storefront GraphQL error
+  Root cause: Bagisto uses Relay-style pagination
+              (first/after/edges/node/pageInfo/totalCount)
+              NOT simple pageSize/items pattern
+  Fix: SSR configured to hit :8000/api/graphql directly
+       Browser proxies through /api/graphql Next.js route
+  Status: Resolved ✅
+
+PHASE 8 — BROKEN LINK FIX + SEARCH REDIRECT (24 Jun)
+-----------------------------------------------------
+  Issue: Quick shop links (e.g. /search/chain) returning 404
+  Root cause: Category slugs are 3-level deep (e.g. "traditional-silver-jewellery-
+              and-articles-silver-women-jewellery-chain") but frontend links use
+              short names (e.g. "chain")
+  Fix: Added fallback redirect in /search/[collection]/page.tsx — if exact
+       category slug not found, redirects to /search?q=<slug>
+  Also: E2E test suite set up at benzntech/sendra-e2e-tests (Playwright + pytest)
+  Status: Resolved ✅
+
+PHASE 9 — STOREFRONT REBUILD & HOMEPAGE REDESIGN (4 Jul)
+---------------------------------------------------------
+  Issue: Storefront container was running stale build (10 days old).
+         Search page, /about-us, /contact-us, /gold-plan all timing out.
+  Root cause: Docker image not rebuilt after code changes.
+  Fix: Rebuilt Docker image with latest code, restarted container.
+       All routes now serving correctly.
+
+  Issue: Homepage still showing DAR Jewellery placeholder content
+         (DarAssetsContent — "Why DAR Jewellery", DAR banners)
+  Root cause: Homepage page.tsx was rendering DarAssetsContent instead of
+              the proper Sendra Gold components.
+  Fix: Used Claude Code to rewrite page.tsx — replaced DarAssetsContent with:
+       - AnnouncementBar (top rotating offers)
+       - CategorySidebar (desktop category nav, 300px)
+       - RenderThemeCustomization (Bagisto hero carousel)
+       - QuickShopCircles (12 quick-shop links with VA badges)
+       - ExclusiveOffers (4-card grid)
+       - FeaturedCollage (masonry layout)
+  Deploy: Code pushed to GitHub → pulled on EC2 → Docker rebuilt
+  Status: Resolved ✅
+
+================================================================================
+CURRENT STATE
+================================================================================
+
+METRIC                          VALUE
+------                          -----
+Products in DB                  43,527 imported
+Products served via GraphQL     ~41,027
+Categories                      203 (3-level hierarchy)
+Image directories on disk       43,493
+Images per product              1-5
+GraphQL endpoint                :8000/api/graphql (Relay-style)
+Storefront URL                  http://13.140.136.162:3001
+Backend URL                     http://13.140.136.162:8000
+
+DOCKER CONTAINERS (4 Jul 2026)
+-------------------------------
+bagisto-storefront   Up 10 days (rebuilt)  :3001->3001/tcp
+bagisto-app          Up 12 days             :8000->8000/tcp
+bagisto-mysql        Up 13 days (healthy)   :3307->3306/tcp
+steel-browser        Up 10 days             :3002->3000/tcp
+
+ROUTE STATUS
+------------
+Homepage            ✅ 200 in 0.8s
+/search?q=chain     ✅ 200 in 1.6s (search works)
+/search/chain       ✅ 307 redirect to /search?q=chain
+/about-us           ✅ 200 in 4.1s
+/contact-us         ✅ 200 in 0.8s
+/gold-plan          ✅ 200 in 0.8s
+Admin panel         ✅ 200 (local), timed out from external
+
+================================================================================
+WHAT'S LEFT / NEXT STEPS
+================================================================================
+
+1. REMAINING PRODUCTS (~2,500 SKUs)
+   - 43,527 imported vs 41,027 queryable via GraphQL
+   - Likely indexing/cache issue or missing attribute family
+   - Need to investigate Bagisto product indexing
+
+2. DOMAIN & SSL
+   - Point custom domain to EC2
+   - Set up HTTPS (Let's Encrypt / Cloudflare)
+
+3. PAYMENT GATEWAY
+   - Configure Bagisto payment methods
+   - Razorpay / UPI / COD integration
+
+4. CART & CHECKOUT
+   - Verify Bagisto checkout flow end-to-end
+   - Test guest checkout vs registered user
+
+5. PRODUCT DETAIL PAGES
+   - Verify SSR rendering for individual products
+   - Check image gallery, price display, add-to-cart
+
+6. MOBILE RESPONSIVENESS
+   - QA components on actual mobile viewport sizes
+   - Test CategorySidebar hidden on mobile, etc.
+
+7. SEO POLISH
+   - Meta tags per product/category page
+   - Structured data (Product schema, Organization schema)
+   - Sitemap generation for Sendra Gold domain
+
+8. PERFORMANCE
+   - Next.js image optimization settings
+   - CDN for product images
+   - Caching strategy (Redis for GraphQL)
+
+9. ADMIN PANEL ACCESS
+   - Port 8000 not accessible externally (firewall/security group)
+   - Need to configure access or use SSH tunnel

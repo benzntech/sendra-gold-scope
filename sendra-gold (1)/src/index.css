@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700;800&family=Outfit:wght@400;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-gold: #C5A059;
+  --color-gold-hover: #B48E47;
+  --color-gold-light: #FAEDD6;
+  --color-gold-dark: #917233;
+
+  /* Map all amber values to the luxury gold palette for broad professional look compatibility */
+  --color-amber-50: #FAEDD6;
+  --color-amber-100: #FAEDD6;
+  --color-amber-200: #E9DBC0;
+  --color-amber-300: #DFCA9E;
+  --color-amber-400: #D3B77F;
+  --color-amber-500: #C5A059;
+  --color-amber-600: #B48E47;
+  --color-amber-700: #917233;
+  --color-amber-800: #715828;
+  --color-amber-900: #55421D;
+  --color-amber-950: #2C220E;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F8FAFC;
+  color: #0F172A;
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+.scroll-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
