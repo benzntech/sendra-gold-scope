@@ -29,6 +29,18 @@ Secure customer registration and login requiring a Mobile Number and Referral ID
 - Set up initial Flutter configurations (API base URL pointing to local/staging backend).
 - PWA/mobile responsive settings (viewport configuration, icons, manifest files) will be added to the franchise Vite app (`sendra-gold-franchise`).
 
+### UI Styling & Color Palette Alignment
+- Update the customer e-commerce store frontend (`sendra-storefront`) CSS and configurations to match the luxury gold color palette of the franchise portal (`sendra-gold-franchise`):
+  - Gold: `#C5A059`
+  - Gold Hover: `#B48E47`
+  - Gold Light: `#FAEDD6`
+  - Gold Dark: `#917233`
+  - Fonts: Inter, Outfit
+
+### Server & Git Renaming
+- Update all occurrences of the name "bagisto" on the remote server configuration (Docker setup, container names, etc.) to "sendra".
+- Rename github repository references and configuration details from "bagisto" to "sendra".
+
 ### the agent's Discretion
 - Design and layout of the Mobile Number & Referral ID registration input form fields.
 - Simulated SMS delivery and verification layout.
