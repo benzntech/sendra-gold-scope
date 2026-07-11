@@ -11,4 +11,4 @@ See: .planning/PROJECT.md (updated 2026-07-11)
 ## Current Status
 - Milestone: v1.0 Initialization
 - Active Phase: Phase 1
-- Next Action: Run `/gsd-discuss-phase 1` to align on implementation steps for Phase 1.
+- Next Action: Run `/gsd-plan-phase 1` to design the plan for Phase 1.
