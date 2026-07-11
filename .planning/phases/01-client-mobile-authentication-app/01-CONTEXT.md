@@ -1,0 +1,80 @@
+# Phase 1: Client Mobile Authentication & App - Context
+
+**Gathered:** 2026-07-11
+**Status:** Ready for planning
+
+<domain>
+## Phase Boundary
+
+Secure customer registration and login requiring a Mobile Number and Referral ID. Integrates mock OTP verification for development. Scaffolds customer mobile app using the Bagisto Flutter mobile app, and adds PWA/mobile capabilities for the franchise Vite app.
+
+</domain>
+
+<decisions>
+## Implementation Decisions
+
+### Authentication Flow & Input Gate
+- Login requires two fields: `Mobile Number` (authenticated via OTP) and `Referral ID` (required validation to log in or register).
+- Device OTP authentication will use a Mock OTP verification handler for Phase 1 (OTP is simulated, validation succeeds instantly upon submission for development).
+- Next-Auth credentials provider configuration on the Next.js storefront will be updated to handle the custom flow.
+
+### Backend Integrations (Bagisto Laravel)
+- Implement custom GraphQL queries/mutations in the Bagisto backend to validate:
+  1. If a mobile number is already registered.
+  2. If the referral ID is valid (exists in the system as a Master Franchisee or Channel Partner ID).
+- Modify/create Laravel models, repositories, and migrations to track referrals and mobile authentication tokens.
+
+### Client Mobile App & Wrapper
+- Core mobile app is scaffolded in Flutter using the cloned `sendra-mobile-app` directory (derived from `https://github.com/bagisto/opensource-ecommerce-mobile-app`).
+- Set up initial Flutter configurations (API base URL pointing to local/staging backend).
+- PWA/mobile responsive settings (viewport configuration, icons, manifest files) will be added to the franchise Vite app (`sendra-gold-franchise`).
+
+### the agent's Discretion
+- Design and layout of the Mobile Number & Referral ID registration input form fields.
+- Simulated SMS delivery and verification layout.
+
+</decisions>
+
+<canonical_refs>
+## Canonical References
+
+**Downstream agents MUST read these before planning or implementing.**
+
+### Project Scope & Requirements
+- `sendra-gold-project-scope.txt` — Project overview, current state, and requirements.
+- `project Final Draft.docx` — Detailed business terms for Master Franchisees and Channel Partners.
+- `.planning/REQUIREMENTS.md` — Scoped list of v1 requirements.
+- `.planning/codebase/STACK.md` — Complete tech stack map.
+- `.planning/codebase/STRUCTURE.md` — Complete directory structure map.
+
+</canonical_refs>
+
+<code_context>
+## Existing Code Insights
+
+### Reusable Assets
+- `sendra-storefront/src/components/customer/LoginForm.tsx` — Reference layout for forms.
+- `sendra-storefront/src/utils/auth.ts` — Current Next-Auth CredentialsProvider configuration.
+
+### Established Patterns
+- Laravel modular development inside `packages/Webkul/` for adding custom features.
+- Redux Toolkit for storefront state sync.
+
+### Integration Points
+- Custom Laravel migrations for tracking user mobile details and referral associations.
+- Vite 6 PWA plugin integration inside `sendra-gold-franchise/vite.config.ts`.
+
+</code_context>
+
+<deferred>
+## Deferred Ideas
+
+- SMS Gateway Integration (Twilio/PhonePe OTP) — Deferred until gateway credentials are provided.
+- Native builds generation (.apk, .ipa) — Deferred to later deployment phases.
+
+</deferred>
+
+---
+
+*Phase: 01-client-mobile-authentication-app*
+*Context gathered: 2026-07-11*
