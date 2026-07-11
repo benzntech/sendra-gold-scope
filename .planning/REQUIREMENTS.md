@@ -39,7 +39,7 @@
 |-------------|-------|--------|
 | APP-01 | Phase 1 | Pending |
 | APP-02 | Phase 1 | Pending |
-| APP-03 | Phase 1 | Pending |
+| APP-03 | Phase 5 | Pending |
 | FRAN-01 | Phase 2 | Pending |
 | FRAN-02 | Phase 2 | Pending |
 | FRAN-03 | Phase 2 | Pending |

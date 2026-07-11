@@ -1,4 +1,4 @@
-# Phase 1: Client Mobile Authentication & App - Context
+# Phase 1: Client Web Auth, UI Styling & Naming - Context
 
 **Gathered:** 2026-07-11
 **Status:** Ready for planning
@@ -6,15 +6,15 @@
 <domain>
 ## Phase Boundary
 
-Secure customer registration and login requiring a Mobile Number and Referral ID. Integrates mock OTP verification for development. Scaffolds customer mobile app using the Bagisto Flutter mobile app, and adds PWA/mobile capabilities for the franchise Vite app.
+Secure customer registration and login on the web storefront requiring a Mobile Number and Referral ID. Integrates mock OTP verification for development. Aligns customer storefront UI design and colors with the franchise portal theme, configures PWA support for the franchise Vite app, and renames system/docker/git references from "bagisto" to "sendra". The customer mobile app wrapper is deferred to Phase 5.
 
 </domain>
 
 <decisions>
 ## Implementation Decisions
 
-### Authentication Flow & Input Gate
-- Login requires two fields: `Mobile Number` (authenticated via OTP) and `Referral ID` (required validation to log in or register).
+### Authentication Flow & Input Gate (Web Storefront)
+- Login/registration requires two fields: `Mobile Number` (authenticated via OTP) and `Referral ID` (required validation to log in or register).
 - Device OTP authentication will use a Mock OTP verification handler for Phase 1 (OTP is simulated, validation succeeds instantly upon submission for development).
 - Next-Auth credentials provider configuration on the Next.js storefront will be updated to handle the custom flow.
 
@@ -23,11 +23,6 @@ Secure customer registration and login requiring a Mobile Number and Referral ID
   1. If a mobile number is already registered.
   2. If the referral ID is valid (exists in the system as a Master Franchisee or Channel Partner ID).
 - Modify/create Laravel models, repositories, and migrations to track referrals and mobile authentication tokens.
-
-### Client Mobile App & Wrapper
-- Core mobile app is scaffolded in Flutter using the cloned `sendra-mobile-app` directory (derived from `https://github.com/bagisto/opensource-ecommerce-mobile-app`).
-- Set up initial Flutter configurations (API base URL pointing to local/staging backend).
-- PWA/mobile responsive settings (viewport configuration, icons, manifest files) will be added to the franchise Vite app (`sendra-gold-franchise`).
 
 ### UI Styling & Color Palette Alignment
 - Update the customer e-commerce store frontend (`sendra-storefront`) CSS and configurations to match the luxury gold color palette of the franchise portal (`sendra-gold-franchise`):
@@ -40,6 +35,9 @@ Secure customer registration and login requiring a Mobile Number and Referral ID
 ### Server & Git Renaming
 - Update all occurrences of the name "bagisto" on the remote server configuration (Docker setup, container names, etc.) to "sendra".
 - Rename github repository references and configuration details from "bagisto" to "sendra".
+
+### PWA Configurations
+- PWA/mobile responsive settings (viewport configuration, icons, manifest files) will be added to the franchise Vite app (`sendra-gold-franchise`).
 
 ### the agent's Discretion
 - Design and layout of the Mobile Number & Referral ID registration input form fields.
@@ -81,6 +79,7 @@ Secure customer registration and login requiring a Mobile Number and Referral ID
 <deferred>
 ## Deferred Ideas
 
+- Customer Mobile App Wrapper (Flutter/native) — Moved to Phase 5.
 - SMS Gateway Integration (Twilio/PhonePe OTP) — Deferred until gateway credentials are provided.
 - Native builds generation (.apk, .ipa) — Deferred to later deployment phases.
 
@@ -88,5 +87,5 @@ Secure customer registration and login requiring a Mobile Number and Referral ID
 
 ---
 
-*Phase: 01-client-mobile-authentication-app*
+*Phase: 01-client-web-auth-styling-naming*
 *Context gathered: 2026-07-11*
