@@ -37,23 +37,23 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| APP-01 | Phase 1 | Pending |
-| APP-02 | Phase 1 | Pending |
-| APP-03 | Phase 5 | Pending |
-| FRAN-01 | Phase 2 | Pending |
-| FRAN-02 | Phase 2 | Pending |
-| FRAN-03 | Phase 2 | Pending |
-| FRAN-04 | Phase 2 | Pending |
-| CP-01 | Phase 2 | Pending |
-| CP-02 | Phase 2 | Pending |
-| CP-03 | Phase 2 | Pending |
-| CP-04 | Phase 2 | Pending |
-| GOLD-01 | Phase 3 | Pending |
-| GOLD-02 | Phase 3 | Pending |
-| GOLD-03 | Phase 3 | Pending |
-| ADM-01 | Phase 4 | Pending |
-| ADM-02 | Phase 4 | Pending |
-| ADM-03 | Phase 4 | Pending |
+| APP-01 | Phase 2 | Pending |
+| APP-02 | Phase 2 | Pending |
+| APP-03 | Phase 6 | Pending |
+| FRAN-01 | Phase 3 | Pending |
+| FRAN-02 | Phase 3 | Pending |
+| FRAN-03 | Phase 3 | Pending |
+| FRAN-04 | Phase 3 | Pending |
+| CP-01 | Phase 3 | Pending |
+| CP-02 | Phase 3 | Pending |
+| CP-03 | Phase 3 | Pending |
+| CP-04 | Phase 3 | Pending |
+| GOLD-01 | Phase 4 | Pending |
+| GOLD-02 | Phase 4 | Pending |
+| GOLD-03 | Phase 4 | Pending |
+| ADM-01 | Phase 5 | Pending |
+| ADM-02 | Phase 5 | Pending |
+| ADM-03 | Phase 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 17 total

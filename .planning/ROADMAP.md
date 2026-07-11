@@ -2,35 +2,46 @@
 
 ## Overview
 
-This roadmap details the implementation strategy for the Sendra Gold platform. It starts with web-based customer login gates, UI color synchronization, and system renaming, then expands to branch/partner portals, builds the custom old gold appraisal engine, establishes the admin panel dashboard, and finally deploys the client mobile app wrappers.
+This roadmap details the implementation strategy for the Sendra Gold platform. It starts with setting up the default whitelabel code of Bagisto, storefront styling, and container renaming, followed by client authentication, portals mapping, old gold appraisal, administrative dashboards, and native mobile wrappers.
 
 ## Phases
 
-- [ ] **Phase 1: Client Web Auth, UI Styling & Naming** - Phone + referral ID registration, luxury gold color sync on storefront, and renaming "bagisto" to "sendra" in docker, git, and configs.
-- [ ] **Phase 2: Franchise & Channel Partner Portals** - Ledger mapping, expense tracking, and T1/T2 commission referral overrides.
-- [ ] **Phase 3: Old Gold Purchase System** - Custom appraisal checkpoints, purity calculator, and receipt generation workflows.
-- [ ] **Phase 4: Unified Admin Control & Dashboard** - Centralized management interface for approval of payouts, expenses, and transaction logs.
-- [ ] **Phase 5: Client Mobile App Wrapper** - Scaffold Flutter mobile app using cloned repo and set up Android/iOS wrappers.
+- [ ] **Phase 1: Whitelabel Setup, Styling & Naming** - Sync luxury gold theme, and rename "bagisto" to "sendra" in docker, git, and configuration files. No new functional features.
+- [ ] **Phase 2: Client Web Authentication** - Implement phone number + referral ID verification for customer web storefront.
+- [ ] **Phase 3: Franchise & Channel Partner Portals** - Ledger mapping, expense tracking, and T1/T2 commission referral overrides.
+- [ ] **Phase 4: Old Gold Purchase System** - Custom appraisal checkpoints, purity calculator, and receipt generation workflows.
+- [ ] **Phase 5: Unified Admin Control & Dashboard** - Centralized management interface for approval of payouts, expenses, and transaction logs.
+- [ ] **Phase 6: Client Mobile App Wrapper** - Scaffold Flutter mobile app using cloned repo and set up Android/iOS wrappers.
 
 ## Phase Details
 
-### Phase 1: Client Web Auth, UI Styling & Naming
-**Goal**: Implement a referral gate for customer accounts, align storefront design elements with the franchise gold theme, and rename system references.
+### Phase 1: Whitelabel Setup, Styling & Naming
+**Goal**: Set up default whitelabel settings, align storefront design elements with the franchise gold theme, and rename all system configurations.
 **Depends on**: Nothing
+**Requirements**: None (pre-requisite setup)
+**Success Criteria**:
+  1. Storefront branding colors (gold `#C5A059`, etc.) match the franchise design.
+  2. All occurrences of "bagisto" in docker-compose, configs, and repository names are changed to "sendra".
+**Plans**: 1 plan
+
+Plans:
+- [ ] 01-01: Synchronize branding colors and rename container/git references.
+
+### Phase 2: Client Web Authentication
+**Goal**: Implement a referral gate for customer accounts and update next-auth flows.
+**Depends on**: Phase 1
 **Requirements**: [APP-01, APP-02]
 **Success Criteria**:
   1. User cannot register or enter the app without entering a valid referral ID.
   2. Next-Auth credentials provider handles simulated OTP login.
-  3. Storefront branding colors (gold `#C5A059`, etc.) match the franchise design.
-  4. Docker container names and system references are renamed to "sendra".
 **Plans**: 1 plan
 
 Plans:
-- [ ] 01-01: Implement web registration/referral checks, style updates, and Docker/project renaming.
+- [ ] 02-01: Build customer registration referral validations and mock OTP login integrations.
 
-### Phase 2: Franchise & Channel Partner Portals
-**Goal**: Launch the partner dashboard tracking ₹1 Cr / ₹1 Lakh security deposits, operational ledgers, and overrides.
-**Depends on**: Phase 1
+### Phase 3: Franchise & Channel Partner Portals
+**Goal**: Launch the partner dashboard tracking ₹1 Cr / ₹1 Lakh security deposits, ledgers, and overrides.
+**Depends on**: Phase 2
 **Requirements**: [FRAN-01, FRAN-02, FRAN-03, FRAN-04, CP-01, CP-02, CP-03, CP-04]
 **Success Criteria**:
   1. Admin can register franchisee branches and associate them with operational ledger entries.
@@ -39,12 +50,12 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: Implement Franchisee branch tracking, turnover recording, and expense ledgers.
-- [ ] 02-02: Implement Channel Partner network portal, tier mappings, and T1/T2 commission override rules.
+- [ ] 03-01: Implement Franchisee branch tracking, turnover recording, and expense ledgers.
+- [ ] 03-02: Implement Channel Partner network portal, tier mappings, and T1/T2 commission override rules.
 
-### Phase 3: Old Gold Purchase System
+### Phase 4: Old Gold Purchase System
 **Goal**: Build the old gold purchase entry and appraisal verification flow.
-**Depends on**: Phase 2
+**Depends on**: Phase 3
 **Requirements**: [GOLD-01, GOLD-02, GOLD-03]
 **Success Criteria**:
   1. Appraisers can document gold purity (Karat) and evaluate weight against current gold market feed.
@@ -52,11 +63,11 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 03-01: Build old gold purchase wizard, appraisal verification checklists, and billing receipt generation.
+- [ ] 04-01: Build old gold purchase wizard, appraisal verification checklists, and billing receipt generation.
 
-### Phase 4: Unified Admin Control & Dashboard
+### Phase 5: Unified Admin Control & Dashboard
 **Goal**: Deploy the central administrative dashboard for overall visibility and approval actions.
-**Depends on**: Phase 3
+**Depends on**: Phase 4
 **Requirements**: [ADM-01, ADM-02, ADM-03]
 **Success Criteria**:
   1. System administrators can approve or reject branch expense ledger entries.
@@ -65,11 +76,11 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 04-01: Create consolidated admin control tables, charts, and transaction approval flows.
+- [ ] 05-01: Create consolidated admin control tables, charts, and transaction approval flows.
 
-### Phase 5: Client Mobile App Wrapper
+### Phase 6: Client Mobile App Wrapper
 **Goal**: Scaffolding the Flutter mobile app using the cloned repository base.
-**Depends on**: Phase 4
+**Depends on**: Phase 5
 **Requirements**: [APP-03]
 **Success Criteria**:
   1. Mobile app builds and launches on simulators/devices, connecting successfully to the backend API.
@@ -77,14 +88,15 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 05-01: Configure sendra-mobile-app Flutter settings and deploy native client wrappers.
+- [ ] 06-01: Configure sendra-mobile-app Flutter settings and deploy native client wrappers.
 
 ## Progress
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Client Web Auth, UI Styling & Naming | 0/1 | Not started | - |
-| 2. Franchise & Channel Partner Portals | 0/2 | Not started | - |
-| 3. Old Gold Purchase System | 0/1 | Not started | - |
-| 4. Unified Admin Control & Dashboard | 0/1 | Not started | - |
-| 5. Client Mobile App Wrapper | 0/1 | Not started | - |
+| 1. Whitelabel Setup, Styling & Naming | 0/1 | Not started | - |
+| 2. Client Web Authentication | 0/1 | Not started | - |
+| 3. Franchise & Channel Partner Portals | 0/2 | Not started | - |
+| 4. Old Gold Purchase System | 0/1 | Not started | - |
+| 5. Unified Admin Control & Dashboard | 0/1 | Not started | - |
+| 6. Client Mobile App Wrapper | 0/1 | Not started | - |

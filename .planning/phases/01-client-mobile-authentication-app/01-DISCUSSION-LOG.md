@@ -1,72 +1,40 @@
-# Phase 1: Client Mobile Authentication & App - Discussion Log
+# Phase 1: Whitelabel Setup, Styling & Naming - Discussion Log
 
 > **Audit trail only.** Do not use as input to planning, research, or execution agents.
 > Decisions are captured in CONTEXT.md — this log preserves the alternatives considered.
 
 **Date:** 2026-07-11
-**Phase:** 01-client-mobile-authentication-app
-**Areas discussed:** OTP Authentication, Client Mobile App Structure, Backend Auth Support, Franchise Mobile Configurations
+**Phase:** 01-whitelabel-setup-styling-naming
+**Areas discussed:** Styling Alignment, Server Renaming, Functional Scope
 
 ---
 
-## OTP Authentication
-
-| Option | Description | Selected |
-|--------|-------------|----------|
-| Option A | Actual SMS/OTP Integration (requires SMS gateway details) | |
-| Option B | Mock OTP flow for Phase 1 (instant verification for development) | ✓ |
-
-**User's choice:** Option B (Mock OTP flow for Phase 1).
-**Notes:** Decided to use simulated validation for quick feedback during early development.
+## Styling Alignment
+- Match colors from `sendra-gold-franchise/src/index.css` into `sendra-storefront` configuration.
+- Sync gold and amber values.
 
 ---
 
-## Client Mobile App Structure
-
-| Option | Description | Selected |
-|--------|-------------|----------|
-| Option A | PWA (Progressive Web App) approach (Manifest, Service Worker, and direct Next.js responsive views) | |
-| Option B | Scaffolding a Capacitor/Cordova wrapper project around the Next.js build | |
-| Custom | Use Flutter Open Source app from bagisto/opensource-ecommerce-mobile-app | ✓ |
-
-**User's choice:** Custom - Use Flutter Open Source app.
-**Notes:** Cloned `https://github.com/bagisto/opensource-ecommerce-mobile-app` into `sendra-mobile-app` directory to build the client-side customer mobile e-commerce client on top.
+## Server Renaming
+- Rename "bagisto" to "sendra" in Docker and git configs.
 
 ---
 
-## Backend Auth Support
-
-| Option | Description | Selected |
-|--------|-------------|----------|
-| Option A | Custom GraphQL endpoints/mutations in Bagisto (Laravel backend) for mobile number and referral code check | ✓ |
-| Option B | Dedicated REST API endpoints in Laravel backend specifically for the mobile app authentication | |
-
-**User's choice:** Option A.
-**Notes:** Custom GraphQL mutations match the established storefront and API architecture.
-
----
-
-## Franchise Mobile Configurations
-
-| Option | Description | Selected |
-|--------|-------------|----------|
-| Option A | Strictly focus on storefront PWA configurations in Phase 1 | |
-| Option B | Configure PWA/mobile capabilities for the franchise Vite app mobile app | ✓ |
-
-**User's choice:** Option B.
-**Notes:** PWA and mobile responsive configurations will be configured for the franchise portal Vite project.
+## Functional Scope
+- Decided to move all new functionality (Authentication via Phone + Referral ID) to Phase 2.
+- Phase 1 remains purely dedicated to whitelabeling, configuration setup, and styling.
 
 ---
 
 ## the agent's Discretion
-- Input form design and validation logic.
-- Simulated verification code screen layout.
+- Code refactoring namespace choices.
 
 ## Deferred Ideas
-- Production SMS gateway integration.
-- Native build generation (.apk/.ipa files).
+- All authentication features (Web-based client mobile auth) -> Moved to Phase 2.
+- Portals -> Phase 3.
+- Mobile App Wrapper -> Phase 6.
 
 ---
 
-*Phase: 01-client-mobile-authentication-app*
+*Phase: 01-whitelabel-setup-styling-naming*
 *Discussion log generated: 2026-07-11*
