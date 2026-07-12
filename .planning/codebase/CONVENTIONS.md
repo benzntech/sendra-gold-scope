@@ -429,3 +429,11 @@ Inline comments: `// comment` style in TypeScript; `{/* comment */}` in JSX.
 ### 4.3 Environment Variables
 
 All three projects use `.env` with `.env.example` templates. Backend rule: `env()` calls only permitted inside `config/` files.
+
+### 2.7 UI & Branding Identity (Sendra Gold)
+- **Brand Red**: `#C92127` (used for primary actions, badges, highlight text).
+- **Ink Black**: `#231F20` (used for primary typography, luxury contrast backgrounds).
+- **Warm Paper Cream**: `#FDFCFA` (used for section backgrounds to avoid harsh white).
+- **Soft Cream**: `#F7E8D9` (used for subtle hover states and quick shop circle backgrounds).
+- **Logo**: The main `logo-sendra.png` must be placed on a white pill background (`bg-white rounded px-2 py-1`) when displayed on the red navbar to ensure the red text is visible.
+- **Favicon**: Next.js App Router prioritizes `src/app/favicon.ico`. Ensure the lotus logo crop is placed there, not just in `public/`.
