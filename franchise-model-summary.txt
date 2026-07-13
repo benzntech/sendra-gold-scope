@@ -1,4 +1,4 @@
-SENDRA GOLD PRIVATE LIMITED
+gsdSENDRA GOLD PRIVATE LIMITED
 MASTER FRANCHISE BUSINESS MODEL
 Premium Gold Retail & Gold Loan Franchise Opportunity
 ABOUT SENDRA GOLD
@@ -24,7 +24,7 @@ Monthly Revenue Share: ₹1,00,000
 Additional monthly incentive based on franchise business performance, payable throughout the agreement period subject to compliance with franchise terms.
 WHAT SENDRA GOLD MANAGES
 Business Infrastructure
-Location selection                          
+Location selection
 Showroom setup & interiors
 Branding & signage
 Billing systems & technology
@@ -216,9 +216,9 @@ Email: Info@sendragold.com
 Website: www.sendragold.com
 “Creating a Trusted Gold Business Network Through Smart Partnerships”
 Requirements:
-IOS & Android App for New Users (Client) 
+IOS & Android App for New Users (Client)
 User login Mobile Number Referral ID must for entering the app
 Franchisee / Branch  business mapping and all branch business and expenses things are need to be record
-Promoter / Chanel Partner business also need to mapping in channel partner portal 
-Old Gold Purchase is the main things I will provide all structural things for this one. 
+Promoter / Chanel Partner business also need to mapping in channel partner portal
+Old Gold Purchase is the main things I will provide all structural things for this one.
 For admin portal need to control all activities of billing and all the things and with necessary dashboard
