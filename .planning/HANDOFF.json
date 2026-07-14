@@ -1,0 +1,65 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-07-14T17:36:20Z",
+  "phase": "1.2",
+  "phase_name": "storefront-ui-premium-polish",
+  "phase_dir": ".planning/phases/01.2-storefront-ui-premium-polish",
+  "plan": null,
+  "task": null,
+  "total_tasks": null,
+  "status": "paused",
+  "completed_tasks": [
+    {"id": 1, "name": "Replace auth page side images (furniture -> jewellery)", "status": "done", "commit": "23a17dd"},
+    {"id": 2, "name": "Fix 404 page copy (jewellery-themed)", "status": "done", "commit": "23a17dd"},
+    {"id": 3, "name": "Write Bagisto admin runbooks (product images, currency, 8 CMS pages)", "status": "done", "commit": "23a17dd"},
+    {"id": 4, "name": "Add mega-menu hover navigation with category imagery", "status": "done", "commit": "23a17dd"},
+    {"id": 5, "name": "Add breadcrumbs component on product detail page", "status": "done", "commit": "23a17dd"}
+  ],
+  "remaining_tasks": [
+    {"id": 6, "name": "Run Bagisto admin to fix product images (no grey placeholders)", "status": "blocked", "reason": "Human must run Bagisto admin panel"},
+    {"id": 7, "name": "Switch currency to INR (₹) in Bagisto admin", "status": "blocked", "reason": "Human must run Bagisto admin panel"},
+    {"id": 8, "name": "Populate 8 CMS pages via Bagisto admin", "status": "blocked", "reason": "Human must run Bagisto admin panel; Contact Us page doesn't exist yet"},
+    {"id": 9, "name": "Add product specification table (Metal, Purity, Weight, Certification)", "status": "not_started"},
+    {"id": 10, "name": "Add jewellery-specific catalog filters (Metal Type, Purity, Price Range, Weight)", "status": "not_started"},
+    {"id": 11, "name": "Add social login (Google & Facebook OAuth)", "status": "blocked", "reason": "Needs OAuth credentials"},
+    {"id": 12, "name": "Rename registration heading from 'Become User' to 'Join Sendra Gold'", "status": "not_started"},
+    {"id": 13, "name": "Replace emoji category icons with professional SVG icons", "status": "not_started"},
+    {"id": 14, "name": "Upgrade body font from Arial to Inter/Montserrat", "status": "not_started"},
+    {"id": 15, "name": "Add product card hover effects (shadow, scale, quick-view, wishlist)", "status": "not_started"},
+    {"id": 16, "name": "Add Framer Motion scroll/page animations", "status": "not_started"},
+    {"id": 17, "name": "Add related products carousel on product detail page", "status": "not_started"},
+    {"id": 18, "name": "Replace pagination with Load More button", "status": "not_started"},
+    {"id": 19, "name": "Fix product title formatting (remove backticks, Title Case)", "status": "not_started"},
+    {"id": 20, "name": "Add product descriptions for top 20 products", "status": "not_started"},
+    {"id": 21, "name": "Clarify 'Starting from X%' category labels", "status": "not_started"}
+  ],
+  "blockers": [
+    {"description": "Bagisto admin panel must be run by developer to fix product images, switch currency to INR, and populate 8 CMS pages", "type": "human_action", "workaround": "Run Bagisto admin at localhost:8080/admin and follow BAGISTO-ADMIN-GUIDES.md runbook"},
+    {"description": "Google/Facebook OAuth credentials needed for social login implementation", "type": "human_action", "workaround": "Set up OAuth apps in Google Cloud Console and Facebook Developers"},
+    {"description": "Contact Us CMS page doesn't exist yet in Bagisto backend", "type": "technical", "workaround": "Create new CMS page via Bagisto admin"}
+  ],
+  "async_jobs": [],
+  "human_actions_pending": [
+    {"action": "Run Bagisto admin panel to fix product images, switch currency to INR, populate 8 CMS pages (About Us, Contact Us, Privacy Policy, Terms, Shipping, Refund, Return, Payment)", "context": "Follow step-by-step runbook at .planning/phases/01.2-storefront-ui-premium-polish/BAGISTO-ADMIN-GUIDES.md", "blocking": true},
+    {"action": "Set up Google and Facebook OAuth credentials for social login", "context": "Needed for Plan 01.2-02 Task 4", "blocking": false}
+  ],
+  "decisions": [
+    {"decision": "Phase executed in priority order: P0 -> P1 -> P2", "rationale": "Critical fixes must pass verification before premium UX work begins", "phase": "1.2"},
+    {"decision": "No backend API changes — only admin CMS content + storefront UI modifications", "rationale": "Scope boundary to keep phase focused and low-risk", "phase": "1.2"},
+    {"decision": "Brand colors: Sendra Red (#C92127) for CTAs, Gold (#C5A059) for accents", "rationale": "Consistent with Phase 1 whitelabel branding", "phase": "1.2"},
+    {"decision": "Body font: Inter (or Montserrat), keep Abril Fatface for display headings", "rationale": "Premium feel for jewellery brand; Inter is clean and modern", "phase": "1.2"},
+    {"decision": "Benchmark targets: Tanishq.co.in and CaratLane.com", "rationale": "Industry-standard premium jewellery e-commerce experiences", "phase": "1.2"}
+  ],
+  "uncommitted_files": [
+    ".planning/ROADMAP.md",
+    ".planning/STATE.md",
+    ".planning/config.json",
+    ".planning/phases/01.2-storefront-ui-premium-polish/01.2-CONTEXT.md",
+    ".planning/phases/01.2-storefront-ui-premium-polish/01.2-PLAN.md",
+    ".planning/phases/01.2-storefront-ui-premium-polish/BAGISTO-ADMIN-GUIDES.md",
+    "sendra-backend",
+    "sendra-storefront"
+  ],
+  "next_action": "Resume with: /gsd-resume-work. First action: read BAGISTO-ADMIN-GUIDES.md and have developer run Bagisto admin to fix product images, switch currency to INR, and populate CMS pages. Once P0 verification passes, continue with P1 work (product specs, filters, social login, 'Join Sendra Gold' heading, SVG icons).",
+  "context_notes": "Phase 1.2 is an inserted phase after Phase 1.1. It addresses 18 UI/UX findings from a comprehensive audit. All code changes so far are in sendra-storefront/ (Next.js). Backend changes require manual Bagisto admin interaction. The session ended at context exhaustion (~90%). The mega-menu and breadcrumbs are implemented but not yet verified visually. Social login is blocked on OAuth credentials. The 01.2-PLAN.md has 4 plans (01.2-01 through 01.2-04) with Wave 1/Wave 2 task groupings."
+}
