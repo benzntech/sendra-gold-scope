@@ -7,6 +7,8 @@ This roadmap details the implementation strategy for the Sendra Gold platform. I
 ## Phases
 
 - [x] **Phase 1: Whitelabel Setup, Styling & Naming** - Sync luxury gold theme, and rename "bagisto" to "sendra" in docker, git, and configuration files. No new functional features.
+- [x] **Phase 01.1: fix the admin panel** - Resolves admin login returns 500 error.
+- [x] **Phase 01.2: Storefront Template Integration (Bazaar)** - Scaffold premium storefront and apply luxury gold/red branding variables.
 - [ ] **Phase 2: Client Web Authentication** - Implement phone number + referral ID verification for customer web storefront.
 - [ ] **Phase 3: Franchise & Channel Partner Portals** - Ledger mapping, expense tracking, and T1/T2 commission referral overrides.
 - [ ] **Phase 4: Old Gold Purchase System** - Custom appraisal checkpoints, purity calculator, and receipt generation workflows.
@@ -33,14 +35,30 @@ Plans:
 
 ### Phase 01.1: fix the admin panel (Laravel error: Route [shop.home.index] not defined in bottom.blade.php:13 — admin login returns 500) (INSERTED)
 
-**Goal:** [Urgent work - to be planned]
-**Requirements**: TBD
+**Goal:** Fix the 500 error in the admin panel caused by headless routing, disable development mode, remove Bagisto logos from dark mode, and remove help/version UI.
+**Requirements**: N/A
 **Depends on:** Phase 1
-**Plans:** 0 plans
+**Plans:** 1 plan
 
 Plans:
 
-- [ ] TBD (run /gsd-plan-phase 01.1 to break down)
+- [x] 01.1-01: Fix admin panel routes, disable debug mode, fix logos and UI versioning.
+
+### Phase 01.2: Storefront Template Integration (Bazaar) (INSERTED)
+
+**Goal:** Integrate the premium Bazaar Next.js template as the primary storefront. Configure styles to match Sendra Red/Gold guidelines, keep only the shopping layout, and ensure clean Next.js compilations.
+**Depends on:** Phase 01.1
+**Requirements**: [SYS-01, SYS-02]
+**Success Criteria**:
+  1. Storefront is successfully replaced by the Bazaar Next.js template and compiles without errors.
+  2. Brand identity (Sendra Red `#C92127`, Accent Gold `#C5A059`) is applied.
+  3. Redundant landing layouts (Fashion, Grocery, Gift, etc.) are deleted.
+
+**Plans**: 1 plan
+
+Plans:
+
+- [x] 01.2-01: Scaffold Bazaar storefront, apply Sendra branding, and clean unused layouts.
 
 ### Phase 2: Client Web Authentication
 
@@ -130,6 +148,8 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Whitelabel Setup, Styling & Naming | 1/1 | Completed | 2026-07-11 |
+| 1.1 fix the admin panel | 1/1 | Completed | 2026-07-14 |
+| 1.2 Storefront Template Integration (Bazaar) | 1/1 | Completed | 2026-07-16 |
 | 2. Client Web Authentication | 0/1 | Not started | - |
 | 3. Franchise & Channel Partner Portals | 0/2 | Not started | - |
 | 4. Old Gold Purchase System | 0/1 | Not started | - |
