@@ -1,0 +1,1 @@
+{"type":"message","message":{"role":"toolResult","toolCallId":"manual-guided-terminal-provider-error","toolName":"provider","isError":true,"content":[{"type":"text","text":"Manual guided discuss-milestone turn ended with provider error on claude-code/claude-fable-5: API Error: Unable to connect to API (ConnectionRefused)"}]}}
